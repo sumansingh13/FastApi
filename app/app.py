@@ -34,7 +34,7 @@ def get_post(id: int):
 #post creation and validation using pydantic
 
 @app.post("/posts") 
-def create_post(post: postcreate) ->postcreate: 
+def create_post(post: postcreate) ->postcreate: #for better documentation so that it will show the request model in the docs
     new_post = {"title": post.title, "content": post.content}
     text_post[max(text_post.keys()) + 1] = new_post
     return new_post
