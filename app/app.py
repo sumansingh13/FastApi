@@ -23,6 +23,8 @@ def get_all_posts(limit: int = None):
         return list(text_post.values())[:limit]
     return text_post
 
+#http exceptions
+
 @app.get("/posts/{id}")
 def get_post(id: int):
     if id not in text_post:
