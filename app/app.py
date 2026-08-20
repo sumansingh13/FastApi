@@ -31,7 +31,7 @@ def get_post(id: int):
         raise HTTPException(status_code=404, detail="Post not found")   
     return text_post[id]
 
-#post creation and validation using pydantic
+#post creation and validation using pydantic model
 
 @app.post("/posts") 
 def create_post(post: postcreate) ->postcreate: #for better documentation so that it will show the request model in the docs
