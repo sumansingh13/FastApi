@@ -15,6 +15,8 @@ text_post = {1: {"title": "New Post", "content": "This is a new post."},
              10:{"title": "Even More Post", "content": "This is even more post."}
 }
 
+#Query parameter
+
 @app.get("/posts")
 def get_all_posts(limit: int = None):
     if limit:
