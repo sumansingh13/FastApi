@@ -15,7 +15,9 @@ text_post = {1: {"title": "New Post", "content": "This is a new post."},
 }
 
 @app.get("/posts")
-def get_all_posts():
+def get_all_posts(limit: int = None):
+    if limit:
+        return list(text_post.values())[:limit]
     return text_post
 
 @app.get("/posts/{id}")
