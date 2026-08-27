@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from app.schemas import postcreate
+from app.db import Post, create_db_and_tables, get_async_session
 
 app = FastAPI()
 
