@@ -5,11 +5,13 @@ from sqlalchemy import Column, Text, String, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import declarative_base, relationship
-import datetime
+from datetime import datetime
 
 Database_URL = "sqlite+aiosqlite:///./test.db"
 
-class Post(declarative_base):
+Base = declarative_base()
+
+class Post(Base):
     __tablename__ = "posts"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -27,9 +29,9 @@ async_sessionmaker = async_sessionmaker(engine, expire_on_commit=False)
 
 async def create_db_and_tables():
     async with engine.begin() as conn:
-        await conn.run_sync(declarative_base.metadata.create_all)
+        await conn.run_sync(Base.metadata.create_all)
 
 
-async def get_session() -> AsyncGenerator[AsyncSession, None]:
+async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
     async with async_sessionmaker() as session:
         yield session
